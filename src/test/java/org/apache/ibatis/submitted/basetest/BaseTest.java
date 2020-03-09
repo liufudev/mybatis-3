@@ -33,7 +33,7 @@ class BaseTest {
   @BeforeAll
   static void setUp() throws Exception {
     // create an SqlSessionFactory
-    try (Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml")) {
+    try (final Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/basetest/mybatis-config.xml")) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }
 
@@ -44,18 +44,18 @@ class BaseTest {
 
   @Test
   void shouldGetAUser() {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      Mapper mapper = sqlSession.getMapper(Mapper.class);
-      User user = mapper.getUser(1);
+    try (final SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      final Mapper mapper = sqlSession.getMapper(Mapper.class);
+      final User user = mapper.getUser(10);
       Assertions.assertEquals("User1", user.getName());
     }
   }
 
   @Test
   void shouldInsertAUser() {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      Mapper mapper = sqlSession.getMapper(Mapper.class);
-      User user = new User();
+    try (final SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      final Mapper mapper = sqlSession.getMapper(Mapper.class);
+      final User user = new User();
       user.setId(2);
       user.setName("User2");
       mapper.insertUser(user);

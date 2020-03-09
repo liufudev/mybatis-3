@@ -21,4 +21,5 @@ create table users (
   name varchar(20)
 );
 
-insert into users (id, name) values(1, 'User1');
+insert into users (id, name)
+values (10, 'User1');
